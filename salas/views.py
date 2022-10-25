@@ -68,7 +68,6 @@ def mostrarFormElim(request, id_res):
 #crear una nueva reserva
 def createReserv(request):
     err_flag, err_msg = checks(request)
-
     if(err_flag):
         return HttpResponseBadRequest(err_msg,headers={'mensaje':err_msg})
     user = get_object_or_404(User,username = request.POST.get('user'))
@@ -84,12 +83,9 @@ def createReserv(request):
 
 #eliminar reserva
 def elimReserv(request):
-    print("aca")
     try:
         res=Reservacion.objects.get(id=request.POST['id'])
-        print("hola")
     except ObjectDoesNotExist:
-        print("fallo id")
         print(request.POST['id'])
         return HttpResponseBadRequest('La reservacion no existe',headers={'mensaje':'La reservacion no existe'})
 
@@ -108,7 +104,6 @@ def checks_Usr(request):
     try:
         usr = User.objects.get(username = request.POST.get('user'))
     except ObjectDoesNotExist:
-        print("adno en el fallo")
         return True, "El usuario no existe"
 
     if(not check_password(request.POST.get('passw'),usr.password)):

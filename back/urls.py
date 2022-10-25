@@ -19,10 +19,10 @@ from salas.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', hello),
-    path('ret/', retSalas),
-    path('shw/', mostrarForm),
-    path('sel/<int:id_res>/', mostrarFormElim),
-    path('add/', createReserv),
-    path('eli/', elimReserv)
+    path('', hello, name="hello"),
+    path('ret/', retSalas, name="salas_info"),
+    path('shw/', mostrarForm, name="rform"),
+    path('sel/<int:id_res>/', mostrarFormElim,name="eform"),
+    path('add/', createReserv, name="add"),
+    path('eli/', elimReserv, name="sub")
 ]

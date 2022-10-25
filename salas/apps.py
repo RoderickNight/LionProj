@@ -1,4 +1,7 @@
 import time
+import socket
+import re
+import sys
 from datetime import datetime
 from threading import Thread
 from django.apps import AppConfig
@@ -15,6 +18,8 @@ class UpdatingThread(Thread):
         from salas.models import Sala, Reservacion
         while(True):
             #print(datetime.now().time())
+            if check_server('localhost',8000):
+                break
             n = datetime.now().time()
             reservaciones = Reservacion.objects.all()
             for res in reservaciones:
@@ -31,7 +36,22 @@ class UpdatingThread(Thread):
                 if not r:
                     s.ocupied = False
                     s.save()
+            #print(n)
             time.sleep(1) #repetir cada segundo
+    
+#Funcion que permitira terminar el hilo una vez se cierre el servidor
+def check_server(address, port):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    result = s.connect_ex(('127.0.0.1', 8000))
+
+    if result == 0:
+        #print('socket is open')
+        s.close()
+        return False
+        
+    #print('socket is closed')
+    s.close()
+    return True
         
 
 
