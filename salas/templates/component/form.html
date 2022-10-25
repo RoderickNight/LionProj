@@ -1,0 +1,21 @@
+
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fade" id="reservModalLable">Realizar reservación</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.location.replace('');">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form onsubmit="somefunc();return false;" method="POST" id="formNew">
+            {% csrf_token %}
+            <div class="modal-body">
+                {{ modalForm.as_p }}
+            </div>
+            <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Reservar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.replace('');">cancelar</button>
+            </div>
+        </form>
+      </div>
+    </div>

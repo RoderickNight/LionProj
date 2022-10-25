@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from salas.views import hello
+from salas.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', hello),
+    path('ret/', retSalas),
+    path('shw/', mostrarForm),
+    path('sel/<int:id_res>/', mostrarFormElim),
+    path('add/', createReserv),
+    path('eli/', elimReserv)
 ]

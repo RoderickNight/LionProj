@@ -1,0 +1,8 @@
+.bg_state{
+    background-color: rgb(247, 105, 105);
+}
+
+.small_thing{
+    max-width: 260px;
+    max-height: 100px;
+}
